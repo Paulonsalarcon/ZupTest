@@ -1,0 +1,4 @@
+robotframework
+robotframework-pabot
+robotframework-seleniumlibrary
+robotframework-requests
