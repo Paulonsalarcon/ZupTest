@@ -2,6 +2,14 @@ FROM ubuntu:latest
 
 WORKDIR /zupTest
 
+ARG INCLUDE_TAGS=""
+ARG EXCLUDE_TAGS=""
+ARG BROWSER="headlesschrome"
+ARG NUMBER_OF_PROCESSES="1"
+ARG NAME=""
+
+RUN apt-get install -y wget
+
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 
@@ -10,6 +18,7 @@ RUN apt-get install -y python3-pip \
                        python3-dev \
                        firefox \
                        google-chrome-stable
+
 
 ENV WEBDRIVERS="/app/webdrivers"
 
@@ -31,4 +40,4 @@ COPY . /zupTest
 
 VOLUME [ "/zupTest/output" ]
 
-CMD [ "python3" ]
+CMD [ "run_tests.sh" ]
