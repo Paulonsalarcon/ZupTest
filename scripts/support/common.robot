@@ -1,5 +1,5 @@
 ***Settings***
-import SeleniumLibrary
+Library    SeleniumLibrary
 
 ***Keywords***
 Start Browser
@@ -11,3 +11,9 @@ Start Browser
 Clear Cookies and Close Browser
     Delete All Cookies
     Close All Browsers
+
+Elements Must Be Visible
+    [Arguments]    ${elements}
+    Wait Until Element Is Visible    ${elements[0]}
+    :FOR     ${element}    IN    @{elements}
+        Element Should Be Visible    ${element}

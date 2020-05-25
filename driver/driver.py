@@ -61,7 +61,7 @@ class Driver:
             self.AddArgument("--exclude"," ".join(self.exclude))
 
     def SetBrowser(self):
-        self.AddVariable("browser",self.browser)
+        self.AddVariable("BROWSER",self.browser)
     
     def SetName(self):
         if self.name:
