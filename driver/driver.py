@@ -80,15 +80,19 @@ class Driver:
         if self.processes > 1:
             self.AddArgument("--processes",str(self.processes))
     
+    def SetVariableFile(self):
+        self.AddArgument("--variablefile",str(dataPath.joinpath("testData.py").absolute()))
+
+    
     def Run(self):
         self.SetProcesses()
         self.IncludeTags()
         self.ExcludeTags()
         self.SetBrowser()
         self.SetName()
+        self.SetVariableFile()
         self.SetOutput()
         self.SetCommand()
-        print(self.command)
         system(self.command)
 
 if __name__ == "__main__":
