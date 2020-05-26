@@ -1,0 +1,12 @@
+
+*.pyc
+
+*.log
+
+log.html
+
+output.xml
+
+report.html
+
+*.png
