@@ -17,17 +17,14 @@ Elements Must Be Visible
     Wait Until Element Is Visible    ${elements[0]}
     FOR     ${element}    IN    @{elements}
         Element Should Be Visible    ${element}
-        Set Focus To Element    ${element}
     END
 
 Wait And Input Text
     [Arguments]    ${element}    ${text}    ${timeout}=15
     Wait Until Element is Visible    ${element}    ${timeout}
-    Set Focus To Element    ${element}
     Input Text    ${element}    ${text}
 
 Wait And Click Element
     [Arguments]    ${element}    ${timeout}=15
     Wait Until Element is Visible    ${element}    ${timeout}
-    Set Focus To Element    ${element}
     Click Element    ${element}

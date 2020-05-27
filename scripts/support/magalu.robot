@@ -38,6 +38,12 @@ Product ${product} Must Be Found
     Search Results Page Must Be Opened
     Product ${product} Must Be Available
 
+I Search And Go To Product ${product}
+    Given I Search Product ${product}
+    Then Product ${product} Must Be Found
+    When I Click on Product ${product}
+    Then Product ${product} Details Page Must Be Opened
+
 I Click on Product ${product}
     Wait and Click Element    ${productBlock}\[title*='${product}']
 
@@ -69,8 +75,23 @@ Product ${product} Must Be Added To Cart
     Cart Page Must Be Opened
     Element Should Be Visible    xpath:.//*[@class='BasketItemProduct-info-title']//*[contains(text(),'${product}')]
 
+Quantity of Product ${product} Must Be Equal To ${quantity}
+    ${text}    Get Text    css:.BasketPriceBox-prices-title--normal
+    ${quantityText}    Run Keyword If    ${quantity}==1    Set Variable    (${quantity} item)
+    ...    ELSE    Set Variable    (${quantity} itens)
+    Should Be Equal As Strings    ${quantityText}    ${text}
 
+Product ${product} Must Be Added To Cart With Quantity ${quantity}
+    Then Product ${product} Must Be Added To Cart
+    And Quantity of Product ${product} Must Be Equal To ${quantity}
 
+I Change Quantity of Product ${product} To ${quantity}
+    Select From List By Value    xpath:.//*[@class='BasketItemProduct-info-title']//*[contains(text(),'${product}')]//ancestor::*[@class='BasketItem-productContainer']//select[@class='BasketItemProduct-quantity-dropdown']
+    ...     ${quantity}
+    Wait For Loading
+
+Wait For Loading
+    Wait Until Element Is Not Visible    ${loading}
 
 
 

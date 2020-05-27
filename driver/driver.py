@@ -68,7 +68,7 @@ class Driver:
             self.AddArgument("--name"," ".join(self.name))
 
     def SetOutput(self):
-        self.AddArgument("--output",self.output)
+        self.AddArgument("--outputdir",self.output)
     
     def SetCommand(self):
         if self.processes == 1:

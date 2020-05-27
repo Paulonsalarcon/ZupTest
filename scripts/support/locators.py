@@ -18,6 +18,8 @@ cartCount = cartBlock + quantityItems
 topLinksBlock = magaluRightHeader + " .container-links-top-header"
 myOrdersLink = topLinksBlock + " [href='/acompanhamento/']"
 
+loading = "css:svg.CenteredLoading"
+
 
 commonPageElements = [magaluLogo,
                       searchInput,
