@@ -20,7 +20,6 @@ myOrdersLink = topLinksBlock + " [href='/acompanhamento/']"
 
 
 commonPageElements = [magaluLogo,
-                      magaluLogoImage,
                       searchInput,
                       searchButton,
                       favoriteIcon,
@@ -30,7 +29,8 @@ commonPageElements = [magaluLogo,
                       ]
 
 homePageElements = [loginLink,
-                    myOrdersLink]
+                    myOrdersLink,
+                    magaluLogoImage]
 homePageElements.extend(commonPageElements)
 
 productBlock = "css:.nm-product-item  .productShowCaseContainer"
@@ -44,6 +44,24 @@ productDescriptionLink = "css:[href='#anchor-description']"
 productDescriptionBlock = "css:.description"
 productImage = "css:img.showcase-product__big-img"
 productPriceText = "css:.price-template__text"
+productAddToCartButton = "css:button.button__buy-product-detail"
 
 
-productElements = [productTitle]
+productElements = [productTitle,
+                   productDescriptionLink,
+                   productDescriptionBlock,
+                   productImage,
+                   productPriceText,
+                   productAddToCartButton]
+productElements.extend(commonPageElements)
+
+warrantyContinueButton = "css:.price-warranty__btn--continue"
+
+warrantyElements = [warrantyContinueButton]
+
+#Cart
+cartItem = "css:.BasketItem-productContainer"
+cartItemInfo = cartItem + " *.BasketItemProduct-info"
+cartItemTitle = cartItemInfo + "  .BasketItemProduct-info-title"
+
+cartElements = [cartItem]

@@ -1,5 +1,5 @@
 ***Settings***
-Library      SeleniumLibrary
+Library      SeleniumLibrary    timeout=15
 Variables    locators.py
 Resource     common.robot
 
@@ -31,19 +31,47 @@ Product ${product} Must Be Available
 Search Results Page Must Be Opened
     Elements Must Be Visible    ${searchResultPageElements}
     Page Should Contain Element    ${productBlock}    limit:60
+    ${productCount}    Get Element Count    ${productBlock}
+    Should Be Equal As Integers    ${productCount}    60
 
 Product ${product} Must Be Found
     Search Results Page Must Be Opened
     Product ${product} Must Be Available
 
 I Click on Product ${product}
-    Wait Wait and Click Element    ${productBlock}\[title*='${product}']
+    Wait and Click Element    ${productBlock}\[title*='${product}']
 
 Product Details Page Must Be Opened
-    Elements Must Be Visible    
+    Elements Must Be Visible    ${productElements}
 
 Product ${product} Details Page Must Be Opened
     Product Details Page Must Be Opened
+    ${text}    Get Text    ${productTitle}
+    Should Contain    ${text}    ${product}
+
+I Click On Add To Cart Button
+    Wait and Click Element    ${productAddToCartButton}
+
+Warranty Page Must Be Opened
+    Elements Must Be Visible    ${warrantyElements}
+
+I Click on Continue Button
+    Wait And Click Element    ${warrantyContinueButton}
+
+I Add Product ${product} To Cart
+    Given I Click On Add To Cart Button
+    And I Click on Continue Button
+
+Cart Page Must Be Opened
+    Elements Must Be Visible    ${cartElements}
+
+Product ${product} Must Be Added To Cart
+    Cart Page Must Be Opened
+    Element Should Be Visible    xpath:.//*[@class='BasketItemProduct-info-title']//*[contains(text(),'${product}')]
+
+
+
+
 
 
     
