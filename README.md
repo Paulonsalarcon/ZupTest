@@ -4,9 +4,13 @@ Project used for Zup recruitment test
 The automated test execution framework was built on top of Python3 + RobotFramework + Pabot + Selenium built using a keyword-driven approach.
 
 The repository is ordered in four main folders:
+
   1.data: Contains all test data. These files are placed separetely from test scripts because products can become obsolete so they can be change without changes in test script.
+  
   2.driver: Contains the framework test driver script.
+  
   3.requirements: Contains the python requirement file necessary to run the tests.
+  
   4.scripts: Contains test scripts, support files and locators.
   
 
