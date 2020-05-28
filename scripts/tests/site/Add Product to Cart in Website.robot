@@ -1,12 +1,11 @@
-***Settings***
+*** Settings ***
 Resource         ../../support/magalu.robot
 Documentation    Objective: These tests verify if the user is able to add a products to cart
-Force Tags       addToCart
-***Test Cases***
+Force Tags       addToCart    positive
+*** Test Cases ***
 Search Product and Add To Cart
     [Documentation]     Objective: Veridy that a product can be added to cart
     ...                 Pass criteria: The test pass when selected product is added to cart
-    [Tags]    positive
     Given I Navigate to Magazine LuizaForce Tags    addToCart
     When I Search Product ${videoGame}
     Then Product ${videoGame} Must Be Found

@@ -1,7 +1,7 @@
-***Settings***
+*** Settings ***
 Library    SeleniumLibrary    timeout=15
 
-***Keywords***
+*** Keywords ***
 Start Browser
     Open Browser 	about:blank 	${BROWSER}
     ${isHeadless}    Run Keyword and Return Status    Should Contain    ${BROWSER}    headless

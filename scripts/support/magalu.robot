@@ -1,10 +1,10 @@
-***Settings***
+*** Settings ***
 Library      SeleniumLibrary    timeout=15
 Variables    locators.py
 Resource     common.robot
 
 
-***Keywords***
+*** Keywords ***
 I Go to Magazine Luiza
     Go To    https://www.magazineluiza.com.br/
 
@@ -93,6 +93,10 @@ I Change Quantity of Product ${product} To ${quantity}
 Wait For Loading
     Wait Until Element Is Not Visible    ${loading}
 
+I Click on Remove ${product} from Cart
+    Wait And Click Element    xpath:.//*[@class='BasketItemProduct-info-title']//*[contains(text(),'${product}')]//ancestor::*[@class='BasketItem-productContainer']${cartItemRemoveLink}
+    Wait For Loading
 
-
+Cart Must Be Empty
+    Element Should Be Visible    ${emptyCartBlock}
     

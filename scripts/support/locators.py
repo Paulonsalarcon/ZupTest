@@ -67,3 +67,7 @@ cartItemInfo = cartItem + " *.BasketItemProduct-info"
 cartItemTitle = cartItemInfo + "  .BasketItemProduct-info-title"
 
 cartElements = [cartItem]
+
+cartItemRemoveLink = "//*[@class='BasketItem-delete-label']"
+
+emptyCartBlock = "css:.EmptyBasket-box"

@@ -1,14 +1,14 @@
-***Settings***
+*** Settings ***
 Resource         ../../support/magalu.robot
 Documentation    Objective: These tests verify if the user is able to change the number of products in cart
 Force Tags       addToCart    quantity     positive    boundary
 Test Template    Change Quantity
 
-***Test Cases***                   PRODUCT         QUANTITY
+*** Test Cases ***                   PRODUCT         QUANTITY
 Change Quantity of Product To 2    ${videogame}    2
 Change Quantity of Product To 2    ${videogame}    10
 
-***Keywords***
+*** Keywords ***
 Change Quantity
     [Documentation]     Objective: Veridy that a product can be added to cart
     ...                 Pass criteria: The test pass when selected product is added to cart
