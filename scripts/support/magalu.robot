@@ -85,7 +85,7 @@ Product ${product} Must Not Be Available In Cart
     Page Should Not Contain Element    xpath:.//*[@class='BasketItemProduct-info-title']//*[contains(text(),'${product}')]
 
 Quantity in Cart Must Be Equal To ${quantity}
-    ${text}    Get Text    ${cartTotalItems}
+    ${text}    Wait and Get Text    ${cartTotalItems}
     ${quantityText}    Run Keyword If    ${quantity}==1    Set Variable    (${quantity} item)
     ...    ELSE    Set Variable    (${quantity} itens)
     Should Be Equal As Strings    ${quantityText}    ${text}

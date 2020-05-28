@@ -28,3 +28,9 @@ Wait And Click Element
     [Arguments]    ${element}    ${timeout}=15
     Wait Until Element is Visible    ${element}    ${timeout}
     Click Element    ${element}
+
+Wait and Get Text
+    [Arguments]    ${element}    ${timeout}=15
+    Wait Until Element is Visible    ${element}    ${timeout}
+    ${text}    Get Text    ${element}
+    [Return]    ${text}

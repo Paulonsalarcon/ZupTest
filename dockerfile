@@ -2,29 +2,25 @@ FROM ubuntu:latest
 
 WORKDIR /zupTest
 
-ARG INCLUDE_TAGS=""
-ARG EXCLUDE_TAGS=""
-ARG BROWSER="headlesschrome"
-ARG NUMBER_OF_PROCESSES="1"
-ARG NAME=""
-
-RUN apt-get install -y wget
-
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
-RUN apt-get install -y python3-pip \
+RUN apt-get install -y wget \
+                       gnupg2 \
+                       dpkg \
+                       unzip \
+                       python3-pip \
                        python3-dev \
-                       firefox \
-                       google-chrome-stable
+                       firefox
 
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
-ENV WEBDRIVERS="/app/webdrivers"
+ENV WEBDRIVERS='/app/webdrivers'
 
-RUN mkdir $WEBDRIVERS
+RUN mkdir -p $WEBDRIVERS
 
-RUN export PATH=$PATH:$WEBDRIVERS
+ENV PATH=${PATH}:${WEBDRIVERS}
 
 RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz -P $WEBDRIVERS
 
@@ -38,6 +34,8 @@ RUN unzip $WEBDRIVERS/chromedriver* -d $WEBDRIVERS && \
 
 COPY . /zupTest
 
+RUN pip3 install -r /zupTest/requirements/requirements.txt
+
 VOLUME [ "/zupTest/output" ]
 
-CMD [ "run_tests.sh" ]
+ENTRYPOINT [ "python3", "driver/driver.py"]
