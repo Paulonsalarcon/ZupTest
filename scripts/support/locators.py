@@ -66,8 +66,14 @@ cartItem = "css:.BasketItem-productContainer"
 cartItemInfo = cartItem + " *.BasketItemProduct-info"
 cartItemTitle = cartItemInfo + "  .BasketItemProduct-info-title"
 
-cartElements = [cartItem]
-
 cartItemRemoveLink = "//*[@class='BasketItem-delete-label']"
 
 emptyCartBlock = "css:.EmptyBasket-box"
+
+cartBuyMoreButton = "css:.BasketContinue-buyMore"
+
+cartTotalItems = "css:.BasketPriceBox-prices-title--normal"
+
+cartElements = [cartItem,
+                cartItemRemoveLink,
+                cartBuyMoreButton]

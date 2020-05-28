@@ -16,6 +16,6 @@ Change Quantity
     Given I Navigate to Magazine Luiza
     When I Search And Go To Product ${product}
     And I Add Product ${product} To Cart
-    Then Product ${product} Must Be Added To Cart With Quantity 1
+    Then Quantity in Cart Must Be Equal To 1
     When I Change Quantity of Product ${product} To ${quantity}
-    Then Quantity of Product ${product} Must Be Equal To ${quantity}
+    Then Quantity in Cart Must Be Equal To ${quantity}

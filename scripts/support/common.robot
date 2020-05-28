@@ -1,5 +1,5 @@
 *** Settings ***
-Library    SeleniumLibrary    timeout=15
+Library    SeleniumLibrary    timeout=30
 
 *** Keywords ***
 Start Browser

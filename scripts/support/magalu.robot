@@ -1,5 +1,5 @@
 *** Settings ***
-Library      SeleniumLibrary    timeout=15
+Library      SeleniumLibrary    timeout=30
 Variables    locators.py
 Resource     common.robot
 
@@ -31,8 +31,10 @@ Product ${product} Must Be Available
 Search Results Page Must Be Opened
     Elements Must Be Visible    ${searchResultPageElements}
     Page Should Contain Element    ${productBlock}    limit:60
+
+Search Results Page Must Show ${quantity} Products
     ${productCount}    Get Element Count    ${productBlock}
-    Should Be Equal As Integers    ${productCount}    60
+    Should Be Equal As Integers    ${productCount}    ${quantity}
 
 Product ${product} Must Be Found
     Search Results Page Must Be Opened
@@ -64,26 +66,29 @@ Warranty Page Must Be Opened
 I Click on Continue Button
     Wait And Click Element    ${warrantyContinueButton}
 
+I Click on Continue Button When Warranty Page Is Opened
+    ${isAvailable}    Run Keyword And Return Status    Warranty Page Must Be Opened
+    Run Keyword If    ${isAvailable}    I Click on Continue Button
+
 I Add Product ${product} To Cart
     Given I Click On Add To Cart Button
-    And I Click on Continue Button
+    And I Click on Continue Button When Warranty Page Is Opened
 
 Cart Page Must Be Opened
     Elements Must Be Visible    ${cartElements}
 
-Product ${product} Must Be Added To Cart
+Product ${product} Must Be Available In Cart
     Cart Page Must Be Opened
     Element Should Be Visible    xpath:.//*[@class='BasketItemProduct-info-title']//*[contains(text(),'${product}')]
 
-Quantity of Product ${product} Must Be Equal To ${quantity}
-    ${text}    Get Text    css:.BasketPriceBox-prices-title--normal
+Product ${product} Must Not Be Available In Cart
+    Page Should Not Contain Element    xpath:.//*[@class='BasketItemProduct-info-title']//*[contains(text(),'${product}')]
+
+Quantity in Cart Must Be Equal To ${quantity}
+    ${text}    Get Text    ${cartTotalItems}
     ${quantityText}    Run Keyword If    ${quantity}==1    Set Variable    (${quantity} item)
     ...    ELSE    Set Variable    (${quantity} itens)
     Should Be Equal As Strings    ${quantityText}    ${text}
-
-Product ${product} Must Be Added To Cart With Quantity ${quantity}
-    Then Product ${product} Must Be Added To Cart
-    And Quantity of Product ${product} Must Be Equal To ${quantity}
 
 I Change Quantity of Product ${product} To ${quantity}
     Select From List By Value    xpath:.//*[@class='BasketItemProduct-info-title']//*[contains(text(),'${product}')]//ancestor::*[@class='BasketItem-productContainer']//select[@class='BasketItemProduct-quantity-dropdown']
@@ -100,3 +105,9 @@ I Click on Remove ${product} from Cart
 Cart Must Be Empty
     Element Should Be Visible    ${emptyCartBlock}
     
+I Click On Buy More Products
+    Wait And Click Element    ${cartBuyMoreButton}
+
+Quantity in Cart Icon Must Be Equal To ${quantity}
+    ${quantityInCart}    Get Text    ${cartCount}
+    Should Be Equal As Integers    ${quantity}    ${quantityInCart}
