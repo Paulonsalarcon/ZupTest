@@ -5,8 +5,8 @@ Force Tags       addToCart    quantity     positive    boundary
 Test Template    Change Quantity
 
 *** Test Cases ***                   PRODUCT         QUANTITY
-Change Quantity of Product To 2    ${videogame}    2
-Change Quantity of Product To 2    ${videogame}    10
+Change Quantity of Product To 2     ${videogame}      2
+Change Quantity of Product To 10    ${videogame}     10
 
 *** Keywords ***
 Change Quantity
