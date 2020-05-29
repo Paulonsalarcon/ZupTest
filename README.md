@@ -30,7 +30,7 @@ Arguments:
   
   --name, -n [tests]: Tests to be executed. When not defined, all tests will be executed according to included/excluded tags
   
-  --output, -o: Output directory where reportmlog and evidences will be placed.
+  --output, -o: Output directory where report, log and evidences will be placed.
   
 2. Docker
   Build Dockerfile: docker build . -t zuptest
